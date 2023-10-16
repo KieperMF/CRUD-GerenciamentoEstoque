@@ -4,6 +4,7 @@
  */
 package View;
 
+import VendedorView.MenuVendedorView;
 import ViewAdmin.MenuAdminView;
 import dao.UsuarioDAO;
 import javax.swing.JOptionPane;
