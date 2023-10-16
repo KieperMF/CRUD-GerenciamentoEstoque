@@ -32,8 +32,6 @@ public class ProdutoModel {
         this.preco = preco;
         this.estoque = estoque;
     }
-    
-    
 
     public int getId() {
         return id;

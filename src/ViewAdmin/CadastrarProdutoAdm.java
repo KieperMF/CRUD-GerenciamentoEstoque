@@ -14,7 +14,9 @@ import model.ProdutoModel;
  * @author kiepe
  */
 public class CadastrarProdutoAdm extends javax.swing.JFrame {
+
     ProdutoDAO dao = new ProdutoDAO();
+
     /**
      * Creates new form CadastrarProdutoAdm
      */
@@ -214,22 +216,25 @@ public class CadastrarProdutoAdm extends javax.swing.JFrame {
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 
-    public void CadastrarProduto(){
+    public void CadastrarProduto() {
         String nome = txtNomeProduto.getText();
         String desc = txtDescricao.getText();
         Double preco = Double.parseDouble(txtPreco.getText());
         int estoque = Integer.parseInt(txtEstoque.getText());
-        ProdutoModel add = new ProdutoModel(nome, desc, preco, estoque);
-        dao.CadastrarProduto(add);
-        
+        if (estoque < 10) {
+            JOptionPane.showMessageDialog(null, "Estoque minino precisa ser 10.");
+        } else {
+            ProdutoModel add = new ProdutoModel(nome, desc, preco, estoque);
+            dao.CadastrarProduto(add);
+        }
     }
-    
-    public void ExibirTabela(){
+
+    public void ExibirTabela() {
         try {
             DefaultTableModel model = (DefaultTableModel) tabelaProduto.getModel();
             model.setNumRows(0);
-            
-            for(ProdutoModel produto:dao.Exibirprodutos()){
+
+            for (ProdutoModel produto : dao.Exibirprodutos()) {
                 model.addRow(new Object[]{
                     produto.getId(),
                     produto.getNome(),
@@ -239,15 +244,15 @@ public class CadastrarProdutoAdm extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro:"+e);
+            JOptionPane.showMessageDialog(null, "Erro:" + e);
         }
     }
-    
-    public void Limpar(){
+
+    public void Limpar() {
         txtNomeProduto.setText("");
         txtDescricao.setText("");
         txtEstoque.setText("");
         txtPreco.setText("");
-   }
-    
+    }
+
 }

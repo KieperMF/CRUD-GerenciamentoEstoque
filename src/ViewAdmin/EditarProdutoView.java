@@ -23,6 +23,7 @@ public class EditarProdutoView extends javax.swing.JFrame {
         initComponents();
         txtIdProduto.setVisible(false);
         Exibir();
+        txtNomeProduto.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -243,7 +244,7 @@ public class EditarProdutoView extends javax.swing.JFrame {
         String desc = txtDescricao.getText();
         Double preco = Double.valueOf(txtPreco.getText());
         int estoque = Integer.parseInt(txtEstoque.getText());
-        ProdutoModel att = new ProdutoModel(id, nome, desc, preco, estoque);
+        ProdutoModel att = new ProdutoModel(id,nome, desc, preco, estoque);
         dao.Atualizar(att);
     }
     
@@ -284,4 +285,5 @@ public class EditarProdutoView extends javax.swing.JFrame {
         txtEstoque.setText("");
         txtPreco.setText("");
     }
+    
 }

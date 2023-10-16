@@ -48,6 +48,7 @@ public class ProdutoDAO {
             JOptionPane.showMessageDialog(null, "Erro Atualizar:" + e);
         }
     }
+      
 
     public void Deletar(int id) {
         String sql = "delete  from Produto where produtoId=?";
