@@ -5,6 +5,7 @@
 package ViewAdmin;
 
 import dao.ProdutoDAO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ProdutoModel;
 
@@ -242,13 +243,21 @@ public class EditarProdutoView extends javax.swing.JFrame {
         int id = Integer.parseInt(txtIdProduto.getText());
         String nome = txtNomeProduto.getText();
         String desc = txtDescricao.getText();
-        Double preco = Double.valueOf(txtPreco.getText());
-        int estoque = Integer.parseInt(txtEstoque.getText());
-        ProdutoModel att = new ProdutoModel(id,nome, desc, preco, estoque);
-        dao.Atualizar(att);
+        if (desc.length() > 200) {
+            JOptionPane.showMessageDialog(null, "A descrição do produto deve ter no maximo 200 caracteres.");
+        } else {
+            Double preco = Double.valueOf(txtPreco.getText());
+            int estoque = Integer.parseInt(txtEstoque.getText());
+            
+            if (estoque < 10) {
+                JOptionPane.showMessageDialog(null, "Estoque abaixo de 10.");
+            }
+            ProdutoModel att = new ProdutoModel(id, nome, desc, preco, estoque);
+            dao.Atualizar(att);
+        }
     }
-    
-    public void Deletar(){
+
+    public void Deletar() {
         int id = Integer.parseInt(txtIdProduto.getText());
         dao.Deletar(id);
     }
@@ -277,13 +286,13 @@ public class EditarProdutoView extends javax.swing.JFrame {
         txtPreco.setText(tabelaProduto.getModel().getValueAt(setar, 3).toString());
         txtEstoque.setText(tabelaProduto.getModel().getValueAt(setar, 4).toString());
     }
-    
-    public void Limpar(){
+
+    public void Limpar() {
         txtIdProduto.setText("");
         txtDescricao.setText("");
         txtNomeProduto.setText("");
         txtEstoque.setText("");
         txtPreco.setText("");
     }
-    
+
 }

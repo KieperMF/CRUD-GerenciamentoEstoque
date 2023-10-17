@@ -156,7 +156,6 @@ public class CadastrarProdutoAdm extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         CadastrarProduto();
         ExibirTabela();
-        Limpar();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -218,14 +217,27 @@ public class CadastrarProdutoAdm extends javax.swing.JFrame {
 
     public void CadastrarProduto() {
         String nome = txtNomeProduto.getText();
-        String desc = txtDescricao.getText();
-        Double preco = Double.parseDouble(txtPreco.getText());
-        int estoque = Integer.parseInt(txtEstoque.getText());
-        if (estoque < 10) {
-            JOptionPane.showMessageDialog(null, "Estoque minino precisa ser 10.");
+        if (nome.length() < 3 || nome.length() > 50) {
+            JOptionPane.showMessageDialog(null, "O nome do produto deve ter entre 3 e 50 caracteres.");
         } else {
-            ProdutoModel add = new ProdutoModel(nome, desc, preco, estoque);
-            dao.CadastrarProduto(add);
+            String desc = txtDescricao.getText();
+            if (desc.length() > 200) {
+                JOptionPane.showMessageDialog(null, "A descrição do produto deve ter no maximo 200 caracteres.");
+            } else {
+                Double preco = Double.parseDouble(txtPreco.getText());
+                if (preco <= 0) {
+                    JOptionPane.showMessageDialog(null, "O preço da unidade tem que ser maior que zero.");
+                } else {
+                    int estoque = Integer.parseInt(txtEstoque.getText());
+                    if (estoque < 10) {
+                        JOptionPane.showMessageDialog(null, "Estoque minino precisa ser 10.");
+                    } else {
+                        ProdutoModel add = new ProdutoModel(nome, desc, preco, estoque);
+                        dao.CadastrarProduto(add);
+                        Limpar();
+                    }
+                }
+            }
         }
     }
 
