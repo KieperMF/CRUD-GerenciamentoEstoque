@@ -146,10 +146,12 @@ public class LoginView extends javax.swing.JFrame {
 
             if (rsetAdm.next()) {
                 MenuAdminView menu = new MenuAdminView();
-                menu.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Bem-Vindo Administrador");
+                menu.setVisible(true);                
                 dispose();
             } else if (rsetVend.next()) {
                 MenuVendedorView menu = new MenuVendedorView();
+                JOptionPane.showMessageDialog(null, "Bem-Vindo Vendedor");
                 menu.setVisible(true);
                 dispose();
             } else {
@@ -158,7 +160,7 @@ public class LoginView extends javax.swing.JFrame {
                 txtPassword.setText("");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro LoginView:" + e);
+            JOptionPane.showMessageDialog(null, "Erro Login View:" + e);
         }
     }
 }

@@ -32,6 +32,7 @@ public class MenuAdminView extends javax.swing.JFrame {
         btnCadastro = new javax.swing.JButton();
         btnAtualizarView = new javax.swing.JButton();
         btnVoltarLogin = new javax.swing.JButton();
+        btnCadastrarVendedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,13 @@ public class MenuAdminView extends javax.swing.JFrame {
             }
         });
 
+        btnCadastrarVendedor.setText("Cadastrar Vendedor");
+        btnCadastrarVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarVendedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,24 +77,27 @@ public class MenuAdminView extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVoltarLogin)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCadastro)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAtualizarView)))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                        .addComponent(btnVoltarLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnCadastro)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAtualizarView)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrarVendedor)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addComponent(btnAtualizarView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizarView, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrarVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(btnVoltarLogin)
                 .addGap(62, 62, 62))
         );
@@ -112,6 +123,12 @@ public class MenuAdminView extends javax.swing.JFrame {
         view.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarLoginActionPerformed
+
+    private void btnCadastrarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarVendedorActionPerformed
+        CadastrarVendedor vend = new CadastrarVendedor();
+        vend.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCadastrarVendedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +168,7 @@ public class MenuAdminView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarView;
+    private javax.swing.JButton btnCadastrarVendedor;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnVoltarLogin;
     private javax.swing.JLabel jLabel1;

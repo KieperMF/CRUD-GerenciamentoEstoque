@@ -177,7 +177,6 @@ public class EditarProdutoView extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         Atualizar();
         Exibir();
-        Limpar();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
@@ -248,12 +247,14 @@ public class EditarProdutoView extends javax.swing.JFrame {
         } else {
             Double preco = Double.valueOf(txtPreco.getText());
             int estoque = Integer.parseInt(txtEstoque.getText());
-            
+
             if (estoque < 10) {
                 JOptionPane.showMessageDialog(null, "Estoque abaixo de 10.");
+            } else {
+                ProdutoModel att = new ProdutoModel(id, nome, desc, preco, estoque);
+                dao.Atualizar(att);
+                Limpar();
             }
-            ProdutoModel att = new ProdutoModel(id, nome, desc, preco, estoque);
-            dao.Atualizar(att);
         }
     }
 
