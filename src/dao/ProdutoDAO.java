@@ -15,7 +15,7 @@ public class ProdutoDAO {
     ResultSet rset = null;
 
     public void CadastrarProduto(ProdutoModel produto) {
-        String sql = "insert into Produto (nome,descricao,precoUnitario,estoque) values(?,?,?,?)";
+        String sql = "insert into Produto (nome,descricao,precoUnitario,estoque,status) values(?,?,?,?,?)";
         try {
             con = Conexao.createConnection();
             pstm = con.prepareStatement(sql);
@@ -24,6 +24,7 @@ public class ProdutoDAO {
             pstm.setString(2, produto.getDescricao());
             pstm.setDouble(3, produto.getPreco());
             pstm.setInt(4, produto.getEstoque());
+            pstm.setString(5, produto.getStatus());
             pstm.execute();
             JOptionPane.showMessageDialog(null, "Produto Cadastrado");
         } catch (Exception e) {

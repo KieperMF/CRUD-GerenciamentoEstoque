@@ -14,6 +14,7 @@ public class ProdutoModel {
     String descricao;
     Double preco;
     int estoque;
+    String status;
 
     public ProdutoModel() {
     }
@@ -32,6 +33,16 @@ public class ProdutoModel {
         this.preco = preco;
         this.estoque = estoque;
     }
+
+    public ProdutoModel(String nome, String descricao, Double preco, int estoque, String status) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.estoque = estoque;
+        this.status = status;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -71,6 +82,14 @@ public class ProdutoModel {
 
     public void setEstoque(int estoque) {
         this.estoque = estoque;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     
