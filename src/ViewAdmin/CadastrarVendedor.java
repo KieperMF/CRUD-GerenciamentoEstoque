@@ -6,6 +6,7 @@ package ViewAdmin;
 
 import dao.UsuarioDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.UsuarioModel;
 
 /**
@@ -21,6 +22,7 @@ public class CadastrarVendedor extends javax.swing.JFrame {
      */
     public CadastrarVendedor() {
         initComponents();
+        Exibir();
     }
 
     /**
@@ -38,6 +40,8 @@ public class CadastrarVendedor extends javax.swing.JFrame {
         txtSenha = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         brnVoltar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaVendedor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,27 +63,41 @@ public class CadastrarVendedor extends javax.swing.JFrame {
             }
         });
 
+        tabelaVendedor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Login", "Senha"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaVendedor);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(brnVoltar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-                        .addComponent(btnCadastrar)
-                        .addGap(34, 34, 34))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                            .addComponent(txtSenha))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(300, 300, 300)
+                        .addComponent(btnCadastrar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                .addComponent(txtSenha)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +114,9 @@ public class CadastrarVendedor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(brnVoltar))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,6 +126,7 @@ public class CadastrarVendedor extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Cadastrar();
         Limpar();
+        Exibir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void brnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnVoltarActionPerformed
@@ -154,6 +175,8 @@ public class CadastrarVendedor extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaVendedor;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
@@ -163,6 +186,19 @@ public class CadastrarVendedor extends javax.swing.JFrame {
         String senha = txtSenha.getText();
         UsuarioModel add = new UsuarioModel(nome, senha);
         dao.CadastrarVendedor(add);      
+    }
+    
+    public void Exibir(){
+        DefaultTableModel model = (DefaultTableModel) tabelaVendedor.getModel();
+        model.setNumRows(0);
+        UsuarioDAO dao = new UsuarioDAO();
+        for(UsuarioModel user:dao.ExibirVendedor()){
+            model.addRow(new Object[]{
+                user.getUsuario_id(),
+                user.getUsuario_nome(),
+                user.getUsuario_senha()
+            });
+        }
     }
 
     public void Limpar() {
