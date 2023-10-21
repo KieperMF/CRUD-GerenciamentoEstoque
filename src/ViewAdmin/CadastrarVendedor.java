@@ -4,7 +4,8 @@
  */
 package ViewAdmin;
 
-import dao.UsuarioDAO;
+
+import dao.VendedorDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.UsuarioModel;
@@ -15,7 +16,7 @@ import model.UsuarioModel;
  */
 public class CadastrarVendedor extends javax.swing.JFrame {
 
-    UsuarioDAO dao = new UsuarioDAO();
+    VendedorDAO dao = new VendedorDAO();
 
     /**
      * Creates new form CadastrarVendedor
@@ -191,7 +192,6 @@ public class CadastrarVendedor extends javax.swing.JFrame {
     public void Exibir(){
         DefaultTableModel model = (DefaultTableModel) tabelaVendedor.getModel();
         model.setNumRows(0);
-        UsuarioDAO dao = new UsuarioDAO();
         for(UsuarioModel user:dao.ExibirVendedor()){
             model.addRow(new Object[]{
                 user.getUsuario_id(),

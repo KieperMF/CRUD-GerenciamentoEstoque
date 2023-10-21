@@ -12,6 +12,12 @@ public class UsuarioModel {
         this.usuario_nome = usuario_nome;
         this.usuario_senha = usuario_senha;
     }
+
+    public UsuarioModel(int usuario_id, String usuario_nome, String usuario_senha) {
+        this.usuario_id = usuario_id;
+        this.usuario_nome = usuario_nome;
+        this.usuario_senha = usuario_senha;
+    }
     
     
 

@@ -6,7 +6,8 @@ package View;
 
 import VendedorView.MenuVendedorView;
 import ViewAdmin.MenuAdminView;
-import dao.UsuarioDAO;
+import dao.AdminDAO;
+import dao.VendedorDAO;
 import javax.swing.JOptionPane;
 import model.UsuarioModel;
 import java.sql.ResultSet;
@@ -137,12 +138,13 @@ public class LoginView extends javax.swing.JFrame {
 
     public void Login() {
         try {
-            UsuarioDAO dao = new UsuarioDAO();
+            AdminDAO dao = new AdminDAO();
+            VendedorDAO vend = new VendedorDAO();
             String nome = txtUsuarioLogin.getText();
             String senha = txtPassword.getText();
             UsuarioModel usuario = new UsuarioModel(nome, senha);
             ResultSet rsetAdm = dao.AutenticarLoginAdmin(usuario);
-            ResultSet rsetVend = dao.AutenticarLoginVendedor(usuario);
+            ResultSet rsetVend = vend.AutenticarLoginVendedor(usuario);
 
             if (rsetAdm.next()) {
                 MenuAdminView menu = new MenuAdminView();
